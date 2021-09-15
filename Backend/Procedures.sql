@@ -14,8 +14,15 @@ CREATE PROCEDURE GEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Code from Employee;  
-END 
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Title as Position, DName
+FROM Employee AS e
+   INNER JOIN
+   JobTitle AS j
+   ON e.Code = j.Code
+   INNER JOIN
+   DepartmentDetail AS d
+   ON j.DId = d.DId
+END
 
 --EXEC GEmployee
 
@@ -24,10 +31,15 @@ CREATE PROCEDURE GEmployeeById
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Code from Employee
-  WHERE EmployeeId=@EmployeeId 
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Title as Position, DName
+FROM Employee AS e
+   INNER JOIN
+   JobTitle AS j
+   ON e.Code = j.Code
+   INNER JOIN
+   DepartmentDetail AS d
+   ON j.DId = d.DId  WHERE EmployeeId=@EmployeeId 
 END
-
 --EXEC GEmployeeById @EmployeeId = 1001
 
 CREATE PROCEDURE AEmployee
