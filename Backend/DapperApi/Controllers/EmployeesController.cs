@@ -54,6 +54,7 @@ namespace DapperApi.Controllers
         {
             try
             {
+                return Ok(employee);
                 await _employeeRepo.AddEmployee(employee);
                 return Ok($"Sucessfully Added Employee Details with Id: {employee.EmployeeId}.");
                 

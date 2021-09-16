@@ -1769,11 +1769,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\DapperApi\\DapperApi.csproj",
+      "projectUniqueName": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj",
       "projectName": "DapperApi",
-      "projectPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\DapperApi\\DapperApi.csproj",
+      "projectPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj",
       "packagesPath": "C:\\Users\\rosh.maurya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\DapperApi\\obj\\",
+      "outputPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

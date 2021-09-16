@@ -32,6 +32,10 @@ namespace DapperApi.Entities
         public string ZipCode { get; set; }
 
         public string Code { get; set; }
+ 
+        public string Position { get; set; }
+
+        public string DName { get; set; }
 
 
     }

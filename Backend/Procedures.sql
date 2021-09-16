@@ -14,7 +14,7 @@ CREATE PROCEDURE GEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Title as Position, DName
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
 FROM Employee AS e
    INNER JOIN
    JobTitle AS j
@@ -31,7 +31,7 @@ CREATE PROCEDURE GEmployeeById
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,Title as Position, DName
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
 FROM Employee AS e
    INNER JOIN
    JobTitle AS j
@@ -161,3 +161,44 @@ BEGIN
 END
 
 --EXEC DProject @PId = AQ01
+
+
+--Project Procedures for Employee
+ALTER TABLE Employee ADD PId varchar(20);
+ALTER TABLE Employee ADD FOREIGN KEY (PId) REFERENCES JobProject (PId);
+UPDATE Employee SET PId='AA01' WHERE EmployeeId>1000
+
+SELECT * FROM Employee
+
+CREATE PROCEDURE EmpProject
+AS
+BEGIN
+	SELECT e.EmployeeId,e.PId,PName
+	FROM Employee AS e
+	INNER JOIN
+	JobProject AS j
+	ON e.PId = j.PId
+END
+
+--EXEC EmpProject
+
+CREATE PROCEDURE AEmpProject
+    @EmployeeId INT,
+    @PId VARCHAR(20)
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+    UPDATE Employee SET PId=@PId WHERE EmployeeId = @EmployeeId
+END
+
+--EXEC AEmpProject @PId='MA02',@EmployeeId=1005
+
+CREATE PROCEDURE VEmpProject
+    @PId VARCHAR(20)
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+    SELECT EmployeeId from Employee WHERE PId = @PId
+END
+
+--EXEC VEmpProject @PId='AA01'
