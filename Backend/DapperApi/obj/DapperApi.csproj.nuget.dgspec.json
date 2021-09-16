@@ -1,29 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj": {}
+    "C:\\Users\\akash.umbarje\\Desktop\\EManagementsystem\\EmployeeManagementSystem-master\\Backend\\DapperApi\\DapperApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj": {
+    "C:\\Users\\akash.umbarje\\Desktop\\EManagementsystem\\EmployeeManagementSystem-master\\Backend\\DapperApi\\DapperApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj",
+        "projectUniqueName": "C:\\Users\\akash.umbarje\\Desktop\\EManagementsystem\\EmployeeManagementSystem-master\\Backend\\DapperApi\\DapperApi.csproj",
         "projectName": "DapperApi",
-        "projectPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\DapperApi.csproj",
-        "packagesPath": "C:\\Users\\rosh.maurya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rosh.maurya\\Desktop\\EM Project\\Backend\\DapperApi\\obj\\",
+        "projectPath": "C:\\Users\\akash.umbarje\\Desktop\\EManagementsystem\\EmployeeManagementSystem-master\\Backend\\DapperApi\\DapperApi.csproj",
+        "packagesPath": "C:\\Users\\akash.umbarje\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akash.umbarje\\Desktop\\EManagementsystem\\EmployeeManagementSystem-master\\Backend\\DapperApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rosh.maurya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\akash.umbarje\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,6 +51,10 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "ServiceStack.Text": {
+              "target": "Package",
+              "version": "[5.12.0, )"
             }
           },
           "imports": [
