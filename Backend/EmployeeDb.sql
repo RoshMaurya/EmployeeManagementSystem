@@ -96,7 +96,7 @@ VALUES
 	(1023,'Aishwarya','Wale','Female','1995-04-15','2019-08-04','awale@gmail.com','9767898750','Baramati Road','Baramati','Maharashtra','5783102','SA02','VA01'),
 	(1024,'Aakash','Patil','Male','1983-06-12','2019-05-06','aakashpatil@gmail.com','8459910113','Indoor Road','Indoor','Uttarpradesh','5783103','SA01','VA01'),
 	(1025,'Akshay','Swami','Male','1970-06-11','2008-11-04','akshayswami@gmail.com','8390507864','Balaji Road','Pondicherry','Tamilnadu','5783104','HR01','DA01'),
-	(1026,'Shraddha','Birajdar','Female','1986-06-16','2019-01-04','shraddhab@gmail.com','9876543290','Hydrabad Road','Hydrabad','Aandrapradesh','5783105','TD01','RPA02'),
+	(1026,'Shraddha','Birajdar','Female','1986-06-16','2019-01-04','shraddhab@gmail.com','9876543290','Hydrabad Road','Hydrabad','Aandrapradesh','5783105','TD01',NULL),
 	(1027,'Amol','Kale','Male','1978-04-11','2015-11-04','amolkale@gmail.com','9843567870','Tahne Road','Mumbai','Maharashtra','5783106','SD03','MA02'),
 	(1028,'Omkar','Sale','Male','1980-06-13','2017-11-06','omsale@gmail.com','7020874380','karve Road','Pune','Maharashtra','5783107','SD03','PT02'),
 	(1029,'Pooja','Tripathi','Female','1989-06-04','2018-11-02','poojtri@gmail.com','9922463329','Bandra Road','Mumbai','Maharashtra','5783108','TD01','MSA01'),

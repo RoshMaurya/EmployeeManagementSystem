@@ -42,7 +42,7 @@ namespace DapperApi.Controllers
             {
                 var employee = await _employeeRepo.GetEmployee(id);
                 if (employee == null)
-                    return NotFound($"No Employee Found with Employee Id: {id}.");
+                    return NotFound($"No Employee with Id: {id}.");
                 return Ok(employee);
             }
             catch (Exception ex)
@@ -59,8 +59,6 @@ namespace DapperApi.Controllers
             try
             {
                 var employee = await _employeeRepo.GetEmployee(EName);
-                if (employee == null)
-                    return NotFound($"No Employee Found with Employee Id: {EName}.");
                 return Ok(employee);
             }
             catch (Exception ex)

@@ -137,6 +137,16 @@ END
 
 --EXEC GProjectById @PId = AA01
 
+CREATE PROCEDURE GProjectByName
+@PName VARCHAR(55)
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+  SELECT PID,PName,PDetail,SupervisorEmployeeId from JobProject
+ WHERE PName LIKE '%' + @PName + '%'  
+END
+--EXEC GProjectByName @PName = 're'
+
 CREATE PROCEDURE AProject
 	@PId VARCHAR(20),
 	@PName VARCHAR(55),

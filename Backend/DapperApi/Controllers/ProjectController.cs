@@ -53,6 +53,22 @@ namespace DapperApi.Controllers
             }
         }
 
+        [ActionName("GetProjectByName")]
+        [HttpGet("{PName}", Name = "ProjectByName")]
+        public async Task<IActionResult> GetProjectByName(string PName)
+        {
+            try
+            {
+                var project = await _projectRepo.GetProjectByName(PName);
+                return Ok(project);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [ActionName("AddProject")]
         public async Task<IActionResult> AddProject(Project project)
@@ -133,8 +149,6 @@ namespace DapperApi.Controllers
             try
             {
                 var Project = await _projectRepo.GetEmpProject(PId);
-                if (Project == null)
-                    return NotFound($"No Project Found with Project Id: {PId}.");
                 return Ok(Project);
             }
             catch (Exception ex)

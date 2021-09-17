@@ -26,7 +26,7 @@ namespace DapperApi.Controllers
                 var validity =await _loginRepo.GetValidation(credential);
                 if (validity == null)
                     return NotFound("Invalid Username & Password");
-                return Ok(validity);
+                return Ok(validity.Username);
             }
             catch (Exception ex)
             {

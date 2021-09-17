@@ -41,6 +41,18 @@ namespace DapperApi.Contracts
             }
         }
 
+        public async Task<IEnumerable<Project>> GetProjectByName(string PName)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var project = await connection.QueryAsync<Project>("GProjectByName",
+                    new { PName },
+                    commandType: CommandType.StoredProcedure);
+                List<Project> ProjectList = project.ToList();
+                return ProjectList;
+            }
+        }
+
         public async Task<Project> AddProject(Project project)
         {
             var parameters = new DynamicParameters();
