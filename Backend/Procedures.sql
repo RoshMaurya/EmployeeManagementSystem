@@ -42,6 +42,23 @@ FROM Employee AS e
 END
 --EXEC GEmployeeById @EmployeeId = 1001
 
+CREATE PROCEDURE GEmployeeByName
+@EName VARCHAR(50)
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
+FROM Employee AS e
+   INNER JOIN
+   JobTitle AS j
+   ON e.Code = j.Code
+   INNER JOIN
+   DepartmentDetail AS d
+   ON j.DId = d.DId  WHERE FName LIKE '%' + @EName + '%' 
+END
+--EXEC GEmployeeByName @EName = 'Re'
+
+
 CREATE PROCEDURE AEmployee
 	@EmployeeId INT,
 	@FName VARCHAR (50),
@@ -91,9 +108,9 @@ CREATE PROCEDURE DEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  alter table JobProject nocheck constraint all 
-  DELETE FROM Employee WHERE EmployeeId = @EmployeeId 
-  alter table JobProject check constraint all 
+	DELETE FROM LoginCredentials WHERE EmployeeId = @EmployeeId; 
+	UPDATE JobProject SET SupervisorEmployeeId = NULL WHERE SupervisorEmployeeId = @EmployeeId;
+	DELETE FROM Employee WHERE EmployeeId = @EmployeeId 
 END
 
 --EXEC DEmployee @EmployeeId = 1021
@@ -104,7 +121,7 @@ CREATE PROCEDURE GProject
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT PID,PName,EmployeeId,FORMAT (StartDate, 'dd/MM/yyyy ')as StartDate,FORMAT (EndDate, 'dd/MM/yyyy ')as EndDate,PDetail,SupervisorEmployeeId from JobProject  
+  SELECT PID,PName,PDetail,SupervisorEmployeeId from JobProject  
 END 
 
 --EXEC GProject
@@ -114,7 +131,7 @@ CREATE PROCEDURE GProjectById
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT PID,PName,EmployeeId,FORMAT (StartDate, 'dd/MM/yyyy ')as StartDate,FORMAT (EndDate, 'dd/MM/yyyy ')as EndDate,PDetail,SupervisorEmployeeId from JobProject
+  SELECT PID,PName,PDetail,SupervisorEmployeeId from JobProject
  WHERE PId=@PId 
 END
 
@@ -123,40 +140,35 @@ END
 CREATE PROCEDURE AProject
 	@PId VARCHAR(20),
 	@PName VARCHAR(55),
-	@EmployeeId INT,
-	@StartDate DATE,
-	@EndDate DATE,
 	@PDetail VARCHAR (255),
 	@SupervisorEmployeeId INT
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-	INSERT INTO JobProject (PId,PName,EmployeeId,StartDate,EndDate,PDetail,SupervisorEmployeeId) VALUES (@PId,@PName,@EmployeeId,@StartDate,@EndDate,@PDetail,@SupervisorEmployeeId)
+	INSERT INTO JobProject (PId,PName,PDetail,SupervisorEmployeeId) VALUES (@PId,@PName,@PDetail,@SupervisorEmployeeId)
 END
 
---EXEC AProject @PId ="AQ01",@PName="XYZ",@EmployeeId="1020",@StartDate="20200514",@EndDate="20200514",@PDetail="Nothing",@SupervisorEmployeeId= 1019
+--EXEC AProject @PId ="AQ01",@PName="XYZ",@PDetail="Nothing",@SupervisorEmployeeId= 1019
 
 CREATE PROCEDURE UProject
 	@PId VARCHAR(20),
 	@PName VARCHAR(55),
-	@EmployeeId INT,
-	@StartDate DATE,
-	@EndDate DATE,
 	@PDetail VARCHAR (255),
 	@SupervisorEmployeeId INT
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-	UPDATE JobProject SET PId=@PId,PName=@PName,EmployeeId=@EmployeeId,StartDate=@StartDate,EndDate=@EndDate,PDetail=@PDetail,SupervisorEmployeeId=@SupervisorEmployeeId WHERE PId=@PId
+	UPDATE JobProject SET PName=@PName,PDetail=@PDetail,SupervisorEmployeeId=@SupervisorEmployeeId WHERE PId=@PId
 END
 
---EXEC UProject @PId ="AQ01",@PName="XYZ",@EmployeeId="1020",@StartDate="20200514",@EndDate="20200914",@PDetail="Nothing Impossible",@SupervisorEmployeeId= 1019
+--EXEC UProject @PId ="AQ01",@PName="XYZ",@PDetail="Nothing Impossible",@SupervisorEmployeeId= 1019
 
 CREATE PROCEDURE DProject
 @PId VARCHAR(20)
 AS  
 BEGIN  
-  SET NOCOUNT ON;  
+  SET NOCOUNT ON;
+  UPDATE Employee SET PId = NULL WHERE PId = @PId  
   DELETE FROM JobProject WHERE PId = @PId 
 END
 
@@ -164,11 +176,6 @@ END
 
 
 --Project Procedures for Employee
-ALTER TABLE Employee ADD PId varchar(20);
-ALTER TABLE Employee ADD FOREIGN KEY (PId) REFERENCES JobProject (PId);
-UPDATE Employee SET PId='AA01' WHERE EmployeeId>1000
-
-SELECT * FROM Employee
 
 CREATE PROCEDURE EmpProject
 AS
@@ -182,6 +189,7 @@ END
 
 --EXEC EmpProject
 
+--ADD Employee To Particular Project
 CREATE PROCEDURE AEmpProject
     @EmployeeId INT,
     @PId VARCHAR(20)
@@ -193,12 +201,22 @@ END
 
 --EXEC AEmpProject @PId='MA02',@EmployeeId=1005
 
+--View Employee Assign To Particular Project
 CREATE PROCEDURE VEmpProject
     @PId VARCHAR(20)
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-    SELECT EmployeeId from Employee WHERE PId = @PId
+    SELECT EmployeeId,PId FROM Employee WHERE PId = @PId
 END
 
 --EXEC VEmpProject @PId='AA01'
+
+--View Which Employee Has Not Been Assigned Project 
+CREATE PROCEDURE VEmpNotProject
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+    SELECT EmployeeId,PId FROM Employee WHERE PId IS NULL
+END
+--EXEC VEmpNotProject

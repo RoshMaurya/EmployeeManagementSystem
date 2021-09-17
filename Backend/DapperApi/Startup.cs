@@ -28,13 +28,12 @@ namespace DapperApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddSingleton<DapperContext>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IDashboardRepository, DashboardRepository>();
-
-
             services.AddControllers();
            
         }
@@ -42,12 +41,14 @@ namespace DapperApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(options =>
+            options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-       
 
             app.UseHttpsRedirection();
 

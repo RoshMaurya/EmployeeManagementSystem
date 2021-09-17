@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using DapperApi.Context;
-using DapperApi.Entities;
+using DapperApi.Entities.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,47 +17,47 @@ namespace DapperApi.Contracts
             _context = context;
         }
 
-        public async Task<IEnumerable<Dashboard>> GetAgeGroup()
+        public async Task<IEnumerable<DAgeGroup>> GetAgeGroup()
         {
             using (var connection = _context.CreateConnection())
             {
-                var Ages = await connection.QueryAsync<Dashboard>("EmployeeAge",
+                var AgeCount = await connection.QueryAsync<DAgeGroup>("EmployeeAge",
                     commandType: CommandType.StoredProcedure);
-                List<Dashboard> AgeCount  = Ages.ToList();
-                return AgeCount;
+                List<DAgeGroup> AgeList = AgeCount.ToList();
+                return AgeList;
             }
         }
 
-        public async Task<IEnumerable<Dashboard>> GetGender()
+        public async Task<IEnumerable<DGender>> GetGender()
         {
             using (var connection = _context.CreateConnection())
             {
-                var Genders = await connection.QueryAsync<Dashboard>("EmployeeGender",
+                var Genders = await connection.QueryAsync<DGender>("EmployeeGender",
                     commandType: CommandType.StoredProcedure);
-                List<Dashboard> GenderCount = Genders.ToList();
+                List<DGender> GenderCount = Genders.ToList();
                 return GenderCount;
             }
         }
 
 
-        public async Task<IEnumerable<Dashboard>> GetDepartment()
+        public async Task<IEnumerable<DDepartment>> GetDepartment()
         {
             using (var connection = _context.CreateConnection())
             {
-                var Depts = await connection.QueryAsync<Dashboard>("EmployeeDept",
+                var Depts = await connection.QueryAsync<DDepartment>("EmployeeDept",
                     commandType: CommandType.StoredProcedure);
-                List<Dashboard> DeptCount = Depts.ToList();
+                List<DDepartment> DeptCount = Depts.ToList();
                 return DeptCount;
             }
         }
 
-        public async Task<IEnumerable<Dashboard>> GetPosition()
+        public async Task<IEnumerable<DPosition>> GetPosition()
         {
             using (var connection = _context.CreateConnection())
             {
-                var Positions = await connection.QueryAsync<Dashboard>("EmployeePosition",
+                var Positions = await connection.QueryAsync<DPosition>("EmployeePosition",
                     commandType: CommandType.StoredProcedure);
-                List<Dashboard> PositionCount = Positions.ToList();
+                List<DPosition> PositionCount = Positions.ToList();
                 return PositionCount;
             }
         }

@@ -9,6 +9,7 @@ namespace DapperApi.Entities
     {
 
         public int EmployeeId { get; set; }
+
         public string FName { get; set; }
 
         public string LName { get; set; }

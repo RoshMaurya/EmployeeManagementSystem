@@ -46,9 +46,6 @@ namespace DapperApi.Contracts
             var parameters = new DynamicParameters();
             parameters.Add("PId", project.PId, DbType.String);
             parameters.Add("PName", project.PName, DbType.String);
-            parameters.Add("EmployeeId", project.EmployeeId, DbType.Int32);
-            parameters.Add("StartDate", project.StartDate, DbType.Date);
-            parameters.Add("EndDate", project.EndDate, DbType.Date);
             parameters.Add("PDetail", project.PDetail, DbType.String);
             parameters.Add("SupervisorEmployeeId", project.SupervisorEmployeeId, DbType.Int32);
             using (var connection = _context.CreateConnection())
@@ -66,9 +63,6 @@ namespace DapperApi.Contracts
             var parameters = new DynamicParameters();
             parameters.Add("PId", project.PId, DbType.String);
             parameters.Add("PName", project.PName, DbType.String);
-            parameters.Add("EmployeeId", project.EmployeeId, DbType.Int32);
-            parameters.Add("StartDate", project.StartDate, DbType.Date);
-            parameters.Add("EndDate", project.EndDate, DbType.Date);
             parameters.Add("PDetail", project.PDetail, DbType.String);
             parameters.Add("SupervisorEmployeeId", project.SupervisorEmployeeId, DbType.Int32);
             using (var connection = _context.CreateConnection())
@@ -84,6 +78,42 @@ namespace DapperApi.Contracts
             {
                 await connection.ExecuteAsync("DProject",new { PId },
                     commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<EmpProject> AEmpProject(EmpProject project)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("PId", project.PId, DbType.String);
+            parameters.Add("EmployeeId", project.EmployeeId, DbType.Int32);
+            using (var connection = _context.CreateConnection())
+            {
+                var Project = await connection.QuerySingleOrDefaultAsync<EmpProject>("AEmpProject", parameters,
+                    commandType: CommandType.StoredProcedure);
+                return Project;
+            }
+        }
+
+        public async Task<IEnumerable<EmpProject>> GetEmpProject(string PId)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var project = await connection.QueryAsync<EmpProject>("VEmpProject",
+                    new { PId },
+                    commandType: CommandType.StoredProcedure);
+                List<EmpProject> ProjectList = project.ToList();
+                return ProjectList;
+            }
+        }
+
+        public async Task<IEnumerable<EmpProject>> GetEmpNotProject()
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var project = await connection.QueryAsync<EmpProject>("VEmpNotProject",
+                    commandType: CommandType.StoredProcedure);
+                List<EmpProject> EmployeeList = project.ToList();
+                return EmployeeList;
             }
         }
     }

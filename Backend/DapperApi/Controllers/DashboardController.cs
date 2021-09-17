@@ -24,8 +24,8 @@ namespace DapperApi.Controllers
         {
             try
             {
-                var ages = await _dashboardRepo.GetAgeGroup();
-                return Ok(ages);
+                var AgeList = await _dashboardRepo.GetAgeGroup();
+                return Ok(AgeList);
             }
             catch (Exception ex)
             {
@@ -40,8 +40,8 @@ namespace DapperApi.Controllers
         {
             try
             {
-                var gender = await _dashboardRepo.GetGender();
-                return Ok(gender);
+                var GenderCount = await _dashboardRepo.GetGender();
+                return Ok(GenderCount);
             }
             catch (Exception ex)
             {
@@ -57,8 +57,8 @@ namespace DapperApi.Controllers
         {
             try
             {
-                var dept = await _dashboardRepo.GetDepartment();
-                return Ok(dept);
+                var DeptCount = await _dashboardRepo.GetDepartment();
+                return Ok(DeptCount);
             }
             catch (Exception ex)
             {
@@ -74,8 +74,8 @@ namespace DapperApi.Controllers
         {
             try
             {
-                var positions = await _dashboardRepo.GetPosition();
-                return Ok(positions);
+                var PositionCount = await _dashboardRepo.GetPosition();
+                return Ok(PositionCount);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿using DapperApi.Entities;
+﻿using DapperApi.Entities.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,12 @@ namespace DapperApi.Contracts
 {
     public interface IDashboardRepository
     {
-        public Task<IEnumerable<Dashboard>> GetAgeGroup();
+        public Task<IEnumerable<DAgeGroup>> GetAgeGroup();
 
-        public Task<IEnumerable<Dashboard>> GetGender();
+        public Task<IEnumerable<DGender>> GetGender();
 
-        public Task<IEnumerable<Dashboard>> GetDepartment();
+        public Task<IEnumerable<DDepartment>> GetDepartment();
 
-        public Task<IEnumerable<Dashboard>> GetPosition();
+        public Task<IEnumerable<DPosition>> GetPosition();
     }
 }

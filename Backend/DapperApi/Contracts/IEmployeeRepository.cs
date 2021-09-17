@@ -10,6 +10,7 @@ namespace DapperApi.Contracts
     {
         public Task<IEnumerable<Employee>> GetEmployee();
         public Task<Employee> GetEmployee(int id);
+        public Task<IEnumerable<Employee>> GetEmployee(string EName);
         public Task<Employee> AddEmployee(Employee employee);
         public Task UpdateEmployee(Employee employee);
         public Task DeleteEmployee(int id);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperApi.Controllers
 {
-    [Route("api/Employees")]
+    [Route("Api/[Controller]/[action]")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
@@ -17,6 +17,8 @@ namespace DapperApi.Controllers
         {
             _employeeRepo = employeeRepo;
         }
+
+        [ActionName("GetEmployees")]
         [HttpGet]
         public async Task<IActionResult> GetEmployees()
         {
@@ -32,6 +34,7 @@ namespace DapperApi.Controllers
             }
         }
 
+        [ActionName("GetEmployeeById")]
         [HttpGet("{id}", Name = "EmployeeById")]
         public async Task<IActionResult> GetEmployee(int id)
         {
@@ -49,6 +52,25 @@ namespace DapperApi.Controllers
             }
         }
 
+        [ActionName("GetEmployeeByName")]
+        [HttpGet("{EName}", Name = "EmployeeByName")]
+        public async Task<IActionResult> GetEmployee(string EName)
+        {
+            try
+            {
+                var employee = await _employeeRepo.GetEmployee(EName);
+                if (employee == null)
+                    return NotFound($"No Employee Found with Employee Id: {EName}.");
+                return Ok(employee);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [ActionName("AddEmployee")]
         [HttpPost]
         public async Task<IActionResult> AddEmployee(Employee employee)
         {
@@ -65,6 +87,7 @@ namespace DapperApi.Controllers
             }
         }
 
+        [ActionName("UpdateEmployee")]
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee(Employee employee)
         {
@@ -83,6 +106,7 @@ namespace DapperApi.Controllers
             }
         }
 
+        [ActionName("DeleteEmployee")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {

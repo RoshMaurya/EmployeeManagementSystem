@@ -13,7 +13,9 @@ namespace DapperApi.Contracts
         public Task<Project> AddProject(Project project);
         public Task UpdateProject(Project project);
         public Task DeleteProject(string PId);
-
+        public Task<EmpProject> AEmpProject(EmpProject project);
+        public Task<IEnumerable<EmpProject>> GetEmpProject(string PId);
+        public Task<IEnumerable<EmpProject>> GetEmpNotProject();
 
     }
 }

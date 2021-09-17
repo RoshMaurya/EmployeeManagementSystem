@@ -11,12 +11,6 @@ namespace DapperApi.Entities
 
         public string PName { get; set; }
 
-        public int EmployeeId { get; set; }
-
-        public string StartDate { get; set; }
-
-        public string EndDate { get; set; }
-
         public string PDetail { get; set; }
 
         public string SupervisorEmployeeId { get; set; }

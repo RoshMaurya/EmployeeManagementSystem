@@ -40,6 +40,18 @@ namespace DapperApi.Contracts
             }
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployee(string EName)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var employees = await connection.QueryAsync<Employee>("GEmployeeByName",
+                    new { EName },
+                    commandType: CommandType.StoredProcedure);
+                List<Employee> EmployeeList = employees.ToList();
+                return EmployeeList;
+            }
+        }
+
         public async Task<Employee> AddEmployee(Employee employee)
         {
             var parameters = new DynamicParameters();
@@ -47,8 +59,12 @@ namespace DapperApi.Contracts
             parameters.Add("FName", employee.FName, DbType.String);
             parameters.Add("LName", employee.LName, DbType.String);
             parameters.Add("Gender", employee.Gender, DbType.String);
-            parameters.Add("DateOfBirth", employee.DateOfBirth, DbType.Date);
-            parameters.Add("DateJoined", employee.DateJoined, DbType.Date);
+            DateTime dob;
+            DateTime.TryParse(employee.DateOfBirth.Trim(), out dob);
+            DateTime doj;
+            DateTime.TryParse(employee.DateJoined.Trim(), out doj);
+            parameters.Add("DateOfBirth", dob, DbType.Date);
+            parameters.Add("DateJoined", doj, DbType.Date);
             parameters.Add("Email", employee.Email, DbType.String);
             parameters.Add("Street", employee.Street, DbType.String);
             parameters.Add("Phone", employee.Phone, DbType.String);
@@ -72,8 +88,12 @@ namespace DapperApi.Contracts
             parameters.Add("FName", employee.FName, DbType.String);
             parameters.Add("LName", employee.LName, DbType.String);
             parameters.Add("Gender", employee.Gender, DbType.String);
-            parameters.Add("DateOfBirth", employee.DateOfBirth, DbType.Date);
-            parameters.Add("DateJoined", employee.DateJoined, DbType.Date);
+            DateTime dob;
+            DateTime.TryParse(employee.DateOfBirth.Trim(), out dob);
+            DateTime doj;
+            DateTime.TryParse(employee.DateJoined.Trim(), out doj);
+            parameters.Add("DateOfBirth", dob, DbType.Date);
+            parameters.Add("DateJoined", doj, DbType.Date);
             parameters.Add("Email", employee.Email, DbType.String);
             parameters.Add("Street", employee.Street, DbType.String);
             parameters.Add("Phone", employee.Phone, DbType.String);

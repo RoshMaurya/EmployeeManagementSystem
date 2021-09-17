@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DapperApi.Controllers
 {
-    [Route("api/Project")]
+    [Route("Api/[Controller]/[action]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -19,6 +19,7 @@ namespace DapperApi.Controllers
             _projectRepo = projectRepo;
         }
         [HttpGet]
+        [ActionName("GetProject")]
         public async Task<IActionResult> GetProject()
         {
             try
@@ -34,6 +35,7 @@ namespace DapperApi.Controllers
         }
 
         [HttpGet("{PId}", Name = "ProjectById")]
+        [ActionName("GetProjectById")]
         public async Task<IActionResult> GetProject(string PId)
         {
             try
@@ -52,6 +54,7 @@ namespace DapperApi.Controllers
         }
 
         [HttpPost]
+        [ActionName("AddProject")]
         public async Task<IActionResult> AddProject(Project project)
         {
             try
@@ -68,6 +71,7 @@ namespace DapperApi.Controllers
 
 
         [HttpPut]
+        [ActionName("UpdateProject")]
         public async Task<IActionResult> UpdateProject(Project project)
         {
             try
@@ -86,6 +90,7 @@ namespace DapperApi.Controllers
         }
 
         [HttpDelete("{PId}")]
+        [ActionName("DeleteProject")]
         public async Task<IActionResult> DeleteProject(string PId)
         {
             try
@@ -95,6 +100,58 @@ namespace DapperApi.Controllers
                     return NotFound($"No Project Found with Project Id: {PId}.");
                 await _projectRepo.DeleteProject(PId);
                 return Ok($"Sucessfully Deleted Project Details with Id: {PId}.");
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //Add Project to Employee
+        [HttpPost]
+        [ActionName("AEmpProject")]
+        public async Task<IActionResult> AEmpProject(EmpProject project)
+        {
+            try
+            {
+                var Project = await _projectRepo.AEmpProject(project);
+                return Ok($"Sucessfully Added Employee to with Project Details: { project.PId}.");
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //For getting project 
+        [HttpGet("{PId}")]
+        [ActionName("GetEmpProject")]
+        public async Task<IActionResult> GetEmpProject(string PId)
+        {
+            try
+            {
+                var Project = await _projectRepo.GetEmpProject(PId);
+                if (Project == null)
+                    return NotFound($"No Project Found with Project Id: {PId}.");
+                return Ok(Project);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetEmpNotProject")]
+        public async Task<IActionResult> GetEmpNotProject()
+        {
+            try
+            {
+                var EmpList = await _projectRepo.GetEmpNotProject();
+                return Ok(EmpList);
             }
             catch (Exception ex)
             {
