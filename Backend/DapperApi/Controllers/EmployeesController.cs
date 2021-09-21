@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperApi.Controllers
 {
-    [Route("Api/[Controller]/[action]")]
+    [Route("Api/[Controller]/")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
@@ -18,8 +18,8 @@ namespace DapperApi.Controllers
             _employeeRepo = employeeRepo;
         }
 
-        [ActionName("GetEmployees")]
-        [HttpGet]
+        //[ActionName("GetEmployees")]
+        [HttpGet("GetEmployees/")]
         public async Task<IActionResult> GetEmployees()
         {
             try
@@ -34,8 +34,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("GetEmployeeById")]
-        [HttpGet("{id}", Name = "EmployeeById")]
+        //[ActionName("GetEmployeeById")]
+        [HttpGet(("GetEmployeeById/{id}"))]
         public async Task<IActionResult> GetEmployee(int id)
         {
             try
@@ -52,8 +52,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("GetEmployeeByName")]
-        [HttpGet("{EName}", Name = "EmployeeByName")]
+        //[ActionName("GetEmployeeByName")]
+        [HttpGet("GetEmployeeByName/{EName}")]
         public async Task<IActionResult> GetEmployee(string EName)
         {
             try
@@ -68,8 +68,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("AddEmployee")]
-        [HttpPost]
+        //[ActionName("AddEmployee")]
+        [HttpPost("AddEmployee/")]
         public async Task<IActionResult> AddEmployee(Employee employee)
         {
             try
@@ -85,8 +85,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("UpdateEmployee")]
-        [HttpPut]
+        //[ActionName("UpdateEmployee")]
+        [HttpPut("UpdateEmployee/")]
         public async Task<IActionResult> UpdateEmployee(Employee employee)
         {
             try
@@ -104,8 +104,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("DeleteEmployee")]
-        [HttpDelete("{id}")]
+        //[ActionName("DeleteEmployee")]
+        [HttpDelete("DeleteEmployee/{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {
             try

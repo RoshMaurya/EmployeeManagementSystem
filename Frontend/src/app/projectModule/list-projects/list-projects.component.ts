@@ -29,7 +29,7 @@ export class ListProjectsComponent implements OnInit {
       this._projectService.getProjects().subscribe(res => {
        // console.log(res);
       this.projects = res;
-      console.log(this.projects);
+      //console.log(this.projects);
     });
     this._projectService.getEmployeeNot().subscribe(res => {
       this.addEmpNot = res;

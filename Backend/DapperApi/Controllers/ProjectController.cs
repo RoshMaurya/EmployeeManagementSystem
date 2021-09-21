@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DapperApi.Controllers
 {
-    [Route("Api/[Controller]/[action]")]
+    [Route("Api/[Controller]/")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -18,8 +18,9 @@ namespace DapperApi.Controllers
         {
             _projectRepo = projectRepo;
         }
-        [HttpGet]
-        [ActionName("GetProject")]
+
+        [HttpGet("GetProject/")]
+        //[ActionName("GetProject")]
         public async Task<IActionResult> GetProject()
         {
             try
@@ -34,8 +35,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpGet("{PId}", Name = "ProjectById")]
-        [ActionName("GetProjectById")]
+        [HttpGet("GetProjectById/{PId}")]
+        //[ActionName("GetProjectById")]
         public async Task<IActionResult> GetProject(string PId)
         {
             try
@@ -53,8 +54,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [ActionName("GetProjectByName")]
-        [HttpGet("{PName}", Name = "ProjectByName")]
+        //[ActionName("GetProjectByName")]
+        [HttpGet("GetProjectByName/{PName}")]
         public async Task<IActionResult> GetProjectByName(string PName)
         {
             try
@@ -69,8 +70,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpPost]
-        [ActionName("AddProject")]
+        [HttpPost("AddProject/")]
+        //[ActionName("AddProject")]
         public async Task<IActionResult> AddProject(Project project)
         {
             try
@@ -86,8 +87,8 @@ namespace DapperApi.Controllers
         }
 
 
-        [HttpPut]
-        [ActionName("UpdateProject")]
+        [HttpPut("UpdateProject/")]
+        //[ActionName("UpdateProject")]
         public async Task<IActionResult> UpdateProject(Project project)
         {
             try
@@ -105,8 +106,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpDelete("{PId}")]
-        [ActionName("DeleteProject")]
+        [HttpDelete("DeleteProject/{PId}")]
+        //[ActionName("DeleteProject")]
         public async Task<IActionResult> DeleteProject(string PId)
         {
             try
@@ -125,8 +126,8 @@ namespace DapperApi.Controllers
         }
 
         //Add Project to Employee
-        [HttpPost]
-        [ActionName("AEmpProject")]
+        [HttpPost("AEmpProject/")]
+        //[ActionName("AEmpProject")]
         public async Task<IActionResult> AEmpProject(EmpProject project)
         {
             try
@@ -142,8 +143,8 @@ namespace DapperApi.Controllers
         }
 
         //For getting project 
-        [HttpGet("{PId}")]
-        [ActionName("GetEmpProject")]
+        [HttpGet("GetEmpProject/{PId}")]
+        //[ActionName("GetEmpProject")]
         public async Task<IActionResult> GetEmpProject(string PId)
         {
             try
@@ -158,8 +159,8 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpGet]
-        [ActionName("GetEmpNotProject")]
+        [HttpGet("GetEmpNotProject")]
+        //[ActionName("GetEmpNotProject")]
         public async Task<IActionResult> GetEmpNotProject()
         {
             try

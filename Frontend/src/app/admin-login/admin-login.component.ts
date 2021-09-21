@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { loginCredentials } from '../models/loginCredentials.model';
 import { LoginService } from '../services/login.service';
 import {Output, EventEmitter} from '@angular/core'
+import { isNull } from '@angular/compiler/src/output/output_ast';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-login',
@@ -15,44 +17,48 @@ export class AdminLoginComponent implements OnInit {
   credentials: loginCredentials = {
     EmployeeId: 0,
     Username: "",
-    Password: null
+    Password: ""
   }
+  loading = false;
   username = "";
 
-  isLoginValid: boolean = true;
+  //isLoginValid: boolean = true;
 
   constructor(private router: Router, private loginService: LoginService) {
+    
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.loginService.logout();
   }
 
   onSubmit() {
-    this.loginService.validateCredentials(this.credentials).subscribe(
+    this.loading = true;
+    this.loginService.login(this.credentials.Username,this.credentials.Password).subscribe(
       (response) => {
-        this.username = response;
         // console.log(this.username);
-        this.validateCredentials();
+        this.router.navigate(['nav/dashboard']);
       },
       (error) => {
         this.displayError();
       }
     );
-  }
-
-  validateCredentials() {
-    // console.log(this.credentials.Username);
-
-    if (this.credentials.Username == this.username) {
-      this.loginService.setLoginStatus(true);
-      alert("Loged in");
-      this.isLoginValid = true;
-      this.router.navigate(['/nav/dashboard']);
-    }
-  }
-
+  }  
   displayError() {
     alert("Invalid Credentials");
     location.reload();
   }
+
+  // validateCredentials() {
+  //   // console.log(this.credentials.Username);
+
+  //   if (this.credentials.Username == this.username) {
+  //     this.loginService.setLoginStatus(true);
+  //     alert("Loged in");
+  //     this.isLoginValid = true;
+  //     this.router.navigate(['/nav/dashboard']);
+  //   }
+  // }
+
+  
 }

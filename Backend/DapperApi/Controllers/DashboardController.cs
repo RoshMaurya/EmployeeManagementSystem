@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperApi.Controllers
 {
-    [Route("api/[controller]/[Action]")]
+    [Route("api/[controller]/")]
     [ApiController]
 
     public class DashboardController : ControllerBase
@@ -18,8 +18,7 @@ namespace DapperApi.Controllers
         {
             _dashboardRepo = dashRepo;
         }
-        [HttpGet]
-        [ActionName("GetAgeGroup")]
+        [HttpGet("GetAgeGroup/")]
         public async Task<IActionResult> GetAgeGroup()
         {
             try
@@ -34,8 +33,7 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpGet]
-        [ActionName("GetGender")]
+        [HttpGet("GetGender/")]
         public async Task<IActionResult> GetGender()
         {
             try
@@ -51,8 +49,7 @@ namespace DapperApi.Controllers
         }
 
         
-        [HttpGet]
-        [ActionName("GetDepartment")]
+        [HttpGet("GetDepartment/")]
         public async Task<IActionResult> GetDepartment()
         {
             try
@@ -67,9 +64,7 @@ namespace DapperApi.Controllers
             }
         }
 
-        [HttpGet]
-        [ActionName("GetPosition")]
-
+        [HttpGet("GetPosition/")]
         public async Task<IActionResult> GetPosition()
         {
             try
