@@ -1,0 +1,18 @@
+<div class="Edit-Container">
+  <div align="center">
+  <h2 align=center>{{Title}}</h2><br/>
+    <table align="center" cellspacing = "2" cellpadding = "2">
+    <tr>
+          <td><label>Project_Id:</label></td>
+          <td><input readonly type="text" [(ngModel)]="this.project.pId" class="form-control" placeholder="Project_Id" required></td>
+      </tr><br/>
+      <tr>
+          <td><label>Employee_Id:</label></td>
+          <td><input type="number" name="EmployeeId" [(ngModel)]="EmployeeId" class="form-control" placeholder="Emp_Id" required></td>
+  </tr><br/>
+  <tr>
+   &nbsp;<td class='text-left'><button class="btn btn-success" (click)="saveEmp()">Save</button></td>
+  </tr>
+  </table>
+  </div>
+</div>

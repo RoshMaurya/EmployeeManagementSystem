@@ -1,0 +1,52 @@
+
+
+<div  class="my-5">
+  <table class="dashboardTable">
+    <tbody>
+      <tr>
+        <td>
+          <ngx-charts-bar-vertical [results]="ageGrp" [view]="view" scheme="cool" [schemeType]="schemeType"
+            [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" xAxisLabel="Age Group" yAxisLabel="No of Employee's"
+            legendTitle="Age Groups" [legendPosition]="legendPosition" [animations]="animations"
+            [showGridLines]="showGridLines" [trimXAxisTicks]="trimXAxisTicks" [trimYAxisTicks]="trimYAxisTicks"
+            [rotateXAxisTicks]="rotateXAxisTicks" [maxXAxisTickLength]="maxXAxisTickLength"
+            [maxYAxisTickLength]="maxYAxisTickLength" [xAxisTickFormatting]="formatString"
+            [yAxisTickFormatting]="formatNumber" [yAxisTicks]="yAxisTicks" [showDataLabel]="showDataLabel"
+            [barPadding]="barPadding" [tooltipDisabled]="tooltipDisabled" [roundEdges]="roundEdges">
+          </ngx-charts-bar-vertical>
+        </td>
+        <td>
+          <ngx-charts-pie-chart [results]="positionData" [view]="view" scheme="vivid" [gradient]="gradient"
+            [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)" legendTitle="Positons" >
+          </ngx-charts-pie-chart>
+        </td>
+      </tr>
+      <tr>
+        <td><hr/></td>
+        <td><hr/></td>
+      </tr>
+      <tr>
+        <td>
+          <ngx-charts-bar-vertical [results]="departmentData" [view]="view" scheme="flame" [schemeType]="schemeType"
+            [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" xAxisLabel="Department" yAxisLabel="No of Employee's"
+            legendTitle="Departments" [legendPosition]="legendPosition" [animations]="animations"
+            [showGridLines]="showGridLines" [trimXAxisTicks]="trimXAxisTicks" [trimYAxisTicks]="trimYAxisTicks"
+            [rotateXAxisTicks]="rotateXAxisTicks" [maxXAxisTickLength]="maxXAxisTickLength"
+            [maxYAxisTickLength]="maxYAxisTickLength" [xAxisTickFormatting]="formatString"
+            [yAxisTickFormatting]="formatNumber" [yAxisTicks]="yAxisTicks" [showDataLabel]="showDataLabel"
+            [barPadding]="barPadding" [tooltipDisabled]="tooltipDisabled" [roundEdges]="roundEdges">
+          </ngx-charts-bar-vertical>
+        </td>
+        <td>
+          <ngx-charts-pie-chart [results]="genderData" [view]="view" scheme="picnic" [gradient]="gradient"
+            [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="!isDoughnut"
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)" legendTitle="Gender" >
+          </ngx-charts-pie-chart>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

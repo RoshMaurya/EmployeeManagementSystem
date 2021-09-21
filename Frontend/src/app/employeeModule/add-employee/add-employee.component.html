@@ -1,0 +1,76 @@
+<div class="bg-light">
+  <h2 align="CENTER">{{Title}}</h2><br />
+  <table align="center" cellspacing="2" cellpadding="2">
+    <tr>
+      <td>ID :</td>
+      <td><input type="number" [(ngModel)]="employee.employeeId" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td><input type="text" [(ngModel)]="employee.fName" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td><input type="text" [(ngModel)]="employee.lName" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td><select name="gender" [(ngModel)]="employee.gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>DOB:</td>
+      <td><input id="float-input" type="date" size="30" [(ngModel)]="employee.dateOfBirth" pInputText required></td>
+    </tr>
+    <tr>
+      <td>DOJ:</td>
+      <td><input type="date" size="30" [(ngModel)]="employee.dateJoined" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" [(ngModel)]="employee.email" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Contact No:</td>
+      <td><input type="text" [(ngModel)]="employee.phone" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Street:</td>
+      <td><input type="text" [(ngModel)]="employee.street" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>City:</td>
+      <td><input type="text" [(ngModel)]="employee.city" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>State:</td>
+      <td><input type="text" [(ngModel)]="employee.state" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>ZipCode</td>
+      <td><input type="text" [(ngModel)]="employee.zipCode" size="30" pInputText required></td>
+    </tr>
+    <tr>
+      <td>Job_Title:</td>
+      <td><select name="Job_Title:" [(ngModel)]="employee.code">
+          <option value="AA02">Account Analyst</option>
+          <option value="AD02">Associate SDE</option>
+          <option value="HR01">HR</option>
+          <option value="HR02">Manager-HR</option>
+          <option value="SA01">System Engineer</option>
+          <option value="SA02">Senior System Engineer</option>
+          <option value="SD01">Software Developer</option>
+          <option value="SD02">Tecnical Lead</option>
+          <option value="SD03">Senior SDE</option>
+          <option value="TD01">Trainee SDE</option>
+
+        </select></td>
+    </tr>
+    <br />
+    <tr>
+      <td class='text-right'><button class="btn btn-success" (click)="saveEmployee()">Submit</button></td>
+    </tr>
+  </table>
+</div>

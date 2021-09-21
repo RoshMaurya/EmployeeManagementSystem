@@ -2,7 +2,7 @@
 CREATE PROCEDURE EmployeeAge 
 AS  
 BEGIN  
-  SELECT AgeGroup, count(*) AS COUNT FROM
+  SELECT name, count(*) AS value FROM
 (
 select
   case
@@ -11,10 +11,10 @@ select
     WHEN datediff(YY,DateOfBirth,getdate()) BETWEEN 40 AND 50 THEN '40+'
     WHEN datediff(YY,DateOfBirth,getdate()) BETWEEN 50 AND 60 THEN '50+'
     WHEN datediff(YY,DateOfBirth,getdate())>60 THEN '60+'
- END as AgeGroup
+ END as name
  FROM Employee
 ) t
-group by AgeGroup
+group by name
 END 
 --EXEC EmployeeAge
 
@@ -22,7 +22,7 @@ END
 CREATE PROCEDURE EmployeeGender
 AS
 BEGIN
- SELECT Gender,COUNT(Gender) AS COUNT FROM Employee
+ SELECT Gender AS name,COUNT(Gender) AS value FROM Employee
 GROUP BY Gender;
 END
 --EXEC EmployeeGender
@@ -31,7 +31,7 @@ END
 CREATE PROCEDURE EmployeeDept
 AS
 BEGIN 
- SELECT DName AS Department, COUNT(DName) as COUNT
+ SELECT DName AS name, COUNT(DName) as value
  FROM Employee AS e
    INNER JOIN
    JobTitle AS j
@@ -47,7 +47,7 @@ END
 CREATE PROCEDURE EmployeePosition
 AS
 BEGIN
-  SELECT Title AS Position, COUNT(Title) as COUNT
+  SELECT Title AS name, COUNT(Title) as value
  FROM Employee AS e
    INNER JOIN
    JobTitle AS j

@@ -1,0 +1,139 @@
+<div class="list-container">
+    <header>
+        <h1 class="text-danger text-center">Employee's List</h1>
+    </header>
+    <div class="createEmployee"><button type="button" class="btn btn-success" routerLink="/nav/createEmployee">Create Employee</button></div>
+    <div>
+        
+        <table class="t-container table table-striped table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">
+                        <input class="form-control me-2" (keyup)="search($event)" type="search" placeholder="Search Employees" aria-label="Search">
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+           
+            <tbody *ngFor="let employee of employees">
+                <tr>
+                    <th scope="row">{{employee.employeeId}}</th>
+                    <td>{{employee.fName + ' ' + employee.lName}}</td>
+                    <td>{{employee.phone}}</td>
+                    <td>{{employee.email}}</td>
+                    <td colspan="2">
+                        <button class="btn btn-primary" (click)="openViewModal(viewModal,employee)" data-toggle=modal
+                            data-target=#viewModal>View</button>
+                        <button class="btn btn-success ml-2 " (click) = "editEmployee(employee)">Edit</button>
+                        <button class="btn btn-danger ml-2"
+                            (click)="opendeleteModal(deletModal,employee.employeeId,employee.fName+' '+employee.lName)"
+                            data-toggle="modal" data-target="#deleteModal"> Delete</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Profile Deletion modal code -->
+
+<ng-template #deletModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile Deletion</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>Are you sure you want to delete <span class="text-primary">"{{nameOfEmployeeToDelete}}"</span>
+                profile?</strong></p>
+        <p>All information associated to this employee will be permanently deleted.
+            <span class="text-danger">This operation can not be undone.</span>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
+        <button type="button" class="btn  btn-danger" (click)="modal.close()">Ok</button>
+    </div>
+</ng-template>
+
+<!-- View Modal -->
+
+<ng-template #viewModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{employee.fName + ' ' + employee.lName}}'s Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-4 text-center">
+                <img src="../../assets/images/maleProfileIcon.png" class="card-img-top"
+                    *ngIf="employee.gender.toLowerCase() == 'male'; else elseBlock">
+                <ng-template #elseBlock>
+                    <img src="../../assets/images/femaleProfileIcon.png" class="card-img-top">
+                </ng-template>
+                <h3>{{employee.fName + ' ' + employee.lName}}</h3>
+                <h6>{{employee.position}}</h6>
+            </div>
+            <div class="col-8">
+                <h4 class="info-container">Information</h4><br />
+                <div class="row">
+                    <div class="col">
+                        <span class="font-weight-bold">Id : </span> <span>{{employee.employeeId}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Contact No : </span> <span>{{employee.phone}}</span>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <span class="font-weight-bold">gender : </span> <span>{{employee.gender}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Email : </span> <span>{{employee.email}}</span>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold">Date Of Joining : </span>
+                        <span>{{employee.dateJoined}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Date Of Birth : </span>
+                        <span>{{employee.dateOfBirth}}</span>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold my2">Address : </span><span> {{employee.street}},
+                            {{employee.city}}, {{employee.state}}.</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">ZIP Code : </span> <span>{{employee.zipCode}}</span>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold">Department: </span>
+                        <span>{{employee.dName}}</span>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
+    </div>
+</ng-template>
+

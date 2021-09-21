@@ -54,9 +54,9 @@ FROM Employee AS e
    ON e.Code = j.Code
    INNER JOIN
    DepartmentDetail AS d
-   ON j.DId = d.DId  WHERE FName LIKE '%' + @EName + '%' 
+   ON j.DId = d.DId  WHERE FName LIKE '%' + @EName + '%' OR LName LIKE '%' + @EName + '%' OR EmployeeId LIKE '%' + @EName + '%'
 END
---EXEC GEmployeeByName @EName = 'Re'
+--EXEC GEmployeeByName @EName = '04'
 
 
 CREATE PROCEDURE AEmployee
@@ -143,9 +143,9 @@ AS
 BEGIN  
   SET NOCOUNT ON;  
   SELECT PID,PName,PDetail,SupervisorEmployeeId from JobProject
- WHERE PName LIKE '%' + @PName + '%'  
+ WHERE PName LIKE '%' + @PName + '%'  OR PId LIKE '%' + @PName + '%'
 END
---EXEC GProjectByName @PName = 're'
+--EXEC GProjectByName @PName = 'aa01'
 
 CREATE PROCEDURE AProject
 	@PId VARCHAR(20),
