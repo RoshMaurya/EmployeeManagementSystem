@@ -6,6 +6,7 @@ BEGIN
 (
 select
   case
+    WHEN datediff(YY,DateOfBirth,getdate())<20 THEN 'Below 20'
     WHEN datediff(YY,DateOfBirth,getdate()) BETWEEN 20 AND 30 THEN '20+'
     WHEN datediff(YY,DateOfBirth,getdate()) BETWEEN 30 AND 40 THEN '30+'
     WHEN datediff(YY,DateOfBirth,getdate()) BETWEEN 40 AND 50 THEN '40+'
