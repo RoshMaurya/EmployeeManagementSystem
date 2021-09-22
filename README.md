@@ -1,6 +1,6 @@
 EmployeeManagementSystem
 
-Frontend mandatory installation
+Frontend mandatory installation:-
 
 1.ng add @ng-bootstrap/ng-bootstrap
 2.npm install @swimlane/ngx-charts --save

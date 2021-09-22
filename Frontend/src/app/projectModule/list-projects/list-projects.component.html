@@ -1,74 +1,78 @@
 <div class="list-container">
-  <header>
-      <h1 class="text-danger text-center">Project List</h1>
-  </header>
-  <div class="createProject"><button type="button" class="btn btn-success" routerLink="/nav/createproject">Add Project</button></div>
-  <div>
-      <table class="t-container table table-striped table-hover table-dark">
-          <thead>
-              <tr>
-                  <th scope="col">Project ID</th>
-                  <th scope="col">Project Name</th>
-                  <th scope="col">Project Details</th>
-                  <th scope="col">Supervisor ID</th>
-                  <th scope="col">
-                    <input class="form-control me-2" (keyup)="search($event)" type="search" placeholder="Search Employees" aria-label="Search">
-                  </th>
-              </tr>
-          </thead>
-          <tbody *ngFor="let project of projects">
-              <tr>
-                  <th scope="row">{{project.pId}}</th>
-                  <td>{{project.pName}}</td>
-                  <td>{{project.pDetail}}</td>
-                  <td>
-                    <button type="button" class="btn btn-link text-white" (click)="openEmpViewModal(viewEmpModal,project.supervisorEmployeeId)" data-toggle=modal
-                    data-target=#viewModal>{{project.supervisorEmployeeId}} </button>
-                  </td>
-                  <td colspan="2">
-                      <button class="btn btn-primary" (click)="openViewModal(viewModal,project,addemp)" data-toggle=modal
-                          data-target=#viewModal>View</button>
-                      <button class="btn btn-success ml-2 " (click) = "editProject(project)">Edit</button>
-                      <button class="btn btn-danger ml-2"
-                          (click)="opendeleteModal(deletModal,project.pId,project.pName)"
-                          data-toggle="modal" data-target="#deleteModal"> Delete</button>
-                      <button type="button" class="btn btn-light ml-2"  (click)="AddComp(project)">Add Emp</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-      <div class ="my-2 text-center">
-        <span class= "font-weight-bold">
-        Employees Not Assign On Project <br>
-        <span class="text-dark font-weight-bold" *ngFor="let empNot of addEmpNot">
-            <button  type="button" class="btn btn-link" (click)="openEmpViewModal(viewEmpModal,empNot.employeeId)"
-                data-toggle=modal data-target=#viewEmpModal>{{empNot.employeeId}}
-            </button>
-        </span>
-      </span>
+    <header>
+        <h1 class="text-danger text-center">Project List</h1>
+    </header>
+    <div class="createProject"><button type="button" class="btn btn-success" routerLink="/nav/createproject">Add
+            Project</button></div>
+    <div>
+        <table class="t-container table table-striped table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Project ID</th>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Project Details</th>
+                    <th scope="col">Supervisor ID</th>
+                    <th scope="col">
+                        <input class="form-control me-2" (keyup)="search($event)" type="search"
+                            placeholder="Search Employees" aria-label="Search">
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let project of projects">
+                <tr>
+                    <th scope="row">{{project.pId}}</th>
+                    <td>{{project.pName}}</td>
+                    <td>{{project.pDetail}}</td>
+                    <td>
+                        <button type="button" class="btn btn-link text-white"
+                            (click)="openEmpViewModal(viewEmpModal,project.supervisorEmployeeId)" data-toggle=modal
+                            data-target=#viewModal>{{project.supervisorEmployeeId}} </button>
+                    </td>
+                    <td colspan="2">
+                        <button class="btn btn-primary" (click)="openViewModal(viewModal,project,addemp)"
+                            data-toggle=modal data-target=#viewModal>View</button>
+                        <button class="btn btn-success ml-2 " (click)="editProject(project)">Edit</button>
+                        <button class="btn btn-danger ml-2"
+                            (click)="opendeleteModal(deletModal,project.pId,project.pName)" data-toggle="modal"
+                            data-target="#deleteModal"> Delete</button>
+                        <button type="button" class="btn btn-light ml-2" (click)="AddComp(project)">Add Emp</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="my-2 text-center">
+            <span class="font-weight-bold">
+                Employees Not Assign On Project <br>
+                <span class="text-dark font-weight-bold" *ngFor="let empNot of addEmpNot">
+                    <button type="button" class="btn btn-link"
+                        (click)="openEmpViewModal(viewEmpModal,empNot.employeeId)" data-toggle=modal
+                        data-target=#viewEmpModal>{{empNot.employeeId}}
+                    </button>
+                </span>
+            </span>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Profile Deletion modal code -->
 
 <ng-template #deletModal let-modal>
-  <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile Deletion</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div class="modal-body">
-      <p><strong>Are you sure you want to delete <span class="text-primary">"{{nameOfProjectToDelete}}"</span>
-              profile?</strong></p>
-      <p>All information associated to this employee will be permanently deleted.
-          <span class="text-danger">This operation can not be undone.</span>
-      </p>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
-      <button type="button" class="btn  btn-danger" (click)="modal.close()">Ok</button>
-  </div>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile Deletion</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>Are you sure you want to delete <span class="text-primary">"{{nameOfProjectToDelete}}"</span>
+                profile?</strong></p>
+        <p>All information associated to this employee will be permanently deleted.
+            <span class="text-danger">This operation can not be undone.</span>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
+        <button type="button" class="btn  btn-danger" (click)="modal.close()">Ok</button>
+    </div>
 </ng-template>
 
 <!-- View Employee Modal -->
@@ -135,58 +139,58 @@
                     </div>
                     <div class="col">
                     </div>
-                </div>   
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
     </div>
-</ng-template>  
+</ng-template>
 
 <!-- View Project Modal -->
 <ng-template #viewModal let-modal>
-  <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">{{project.pName}} Project Details</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div class="modal-body">
-      <div class="row">
-          <div class="col-4 text-center">
-              <img src="../../assets/images/proj.jpg" class="card-img-top">
-              <h3>{{project.pName}}</h3>
-          </div>
-          <div class="col-8">
-              <h4 class="info-container">Information</h4><br />
-              <div class="row">
-                  <div class="col">
-                      <span class="font-weight-bold">PId : </span> <span>{{project.pId}}</span>
-                  </div>
-                  <div class="col">
-                    <span class="font-weight-bold">Project_Details: </span> <span>{{project.pDetail}}</span>
-                </div>
-              </div>
-              <div class="row my-2">
-                  <div class="col">
-                      <span class="font-weight-bold">Supervisor_ID : </span> <span>{{project.supervisorEmployeeId}}</span>
-                  </div>
-              <div class="col">
-                    <span class="font-weight-bold">EmployeeId : </span><br>
-                    <span *ngFor="let emps of addempp">
-                        <button  type="button" class="btn btn-link" (click)="openEmpViewModal(viewEmpModal,emps.employeeId)"
-                            data-toggle=modal data-target=#viewEmpModal>{{emps.employeeId}}
-                        </button>
-                    </span>
-              </div>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{project.pName}} Project Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-4 text-center">
+                <img src="../../assets/images/proj.jpg" class="card-img-top">
+                <h3>{{project.pName}}</h3>
             </div>
-      </div>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
-  </div>
-
-
-
-
+            <div class="col-8">
+                <h4 class="info-container">Information</h4><br />
+                <div class="row">
+                    <div class="col">
+                        <span class="font-weight-bold">PId : </span> <span>{{project.pId}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Project_Details: </span> <span>{{project.pDetail}}</span>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <span class="font-weight-bold">Supervisor_ID : </span>
+                        <span>{{project.supervisorEmployeeId}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">EmployeeId : </span><br>
+                        <span *ngFor="let emps of addempp">
+                            <button type="button" class="btn btn-link"
+                                (click)="openEmpViewModal(viewEmpModal,emps.employeeId)" data-toggle=modal
+                                data-target=#viewEmpModal>{{emps.employeeId}}
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
+        </div>
+    </div>
+</ng-template>        
