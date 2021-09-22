@@ -14,7 +14,8 @@ CREATE PROCEDURE GEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,
+  FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
 FROM Employee AS e
    INNER JOIN
    JobTitle AS j
@@ -31,7 +32,8 @@ CREATE PROCEDURE GEmployeeById
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,
+  FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
 FROM Employee AS e
    INNER JOIN
    JobTitle AS j
@@ -43,24 +45,29 @@ END
 --EXEC GEmployeeById @EmployeeId = 1001
 
 CREATE PROCEDURE GEmployeeByName
-@EName VARCHAR(50)
+@EName VARCHAR(255)
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
+  SELECT EmployeeId,FName,LName,Gender,FORMAT (DateOfBirth, 'dd/MM/yyyy ')as DateOfBirth,
+  FORMAT (DateJoined, 'dd/MM/yyyy ')as DateJoined,Email,Phone,Street,City,State,ZipCode,e.Code,Title as Position, DName
 FROM Employee AS e
    INNER JOIN
    JobTitle AS j
    ON e.Code = j.Code
    INNER JOIN
    DepartmentDetail AS d
-   ON j.DId = d.DId  WHERE FName LIKE '%' + @EName + '%' OR LName LIKE '%' + @EName + '%' OR EmployeeId LIKE '%' + @EName + '%'
+   ON j.DId = d.DId  WHERE 
+   FName LIKE '%' + @EName + '%' OR 
+   LName LIKE '%' + @EName + '%' OR 
+   EmployeeId LIKE '%' + @EName + '%' OR
+   Phone LIKE '%' + @EName + '%' OR
+   Email LIKE '%' + @EName + '%' 
 END
---EXEC GEmployeeByName @EName = '04'
+--EXEC GEmployeeByName @EName = '675'
 
 
 CREATE PROCEDURE AEmployee
-	@EmployeeId INT,
 	@FName VARCHAR (50),
 	@LName VARCHAR (50),
 	@Gender VARCHAR (50),
@@ -76,10 +83,10 @@ CREATE PROCEDURE AEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-  INSERT INTO Employee (EmployeeId, FName,LName,Gender,DateOfBirth,DateJoined,Email,Street,Phone,City,State,ZipCode,Code) VALUES (@EmployeeId, @FName,@LName,@Gender,@DateOfBirth,@DateJoined,@Email,@street,@Phone,@City,@State,@ZipCode,@Code)
+  INSERT INTO Employee (FName,LName,Gender,DateOfBirth,DateJoined,Email,Street,Phone,City,State,ZipCode,Code) VALUES (@FName,@LName,@Gender,@DateOfBirth,@DateJoined,@Email,@street,@Phone,@City,@State,@ZipCode,@Code)
 END
 
---EXEC AEmployee @EmployeeId = 1021, @FName = "Xyz",@LName ="ssz",@Gender ="Male",@DateOfBirth="19990519",@DateJoined= "20210519",@Email ="xyz@gmail.com" ,@street= " ",@Phone = "9988776655",@City = "mum",@State = "mah",@ZipCode = 123456,@Code = "TD01"
+--EXEC AEmployee @FName = "Xyz",@LName ="ssz",@Gender ="Male",@DateOfBirth="19990519",@DateJoined= "20210519",@Email ="xyz@gmail.com" ,@street= " ",@Phone = "9988776655",@City = "mum",@State = "mah",@ZipCode = 123456,@Code = "TD01"
 
 CREATE PROCEDURE UEmployee
 	@EmployeeId INT,
@@ -98,10 +105,10 @@ CREATE PROCEDURE UEmployee
 AS  
 BEGIN  
   SET NOCOUNT ON;  
-	UPDATE Employee SET EmployeeId=@EmployeeId,FName=@FName,LName=@LName,Gender=@Gender,DateOfBirth=@DateOfBirth,DateJoined=@DateJoined,Email=@Email,Street=@Street,Phone=@Phone,City=@City,State=@State,ZipCode=@ZipCode,Code=@Code WHERE EmployeeId = @EmployeeId
+	UPDATE Employee SET FName=@FName,LName=@LName,Gender=@Gender,DateOfBirth=@DateOfBirth,DateJoined=@DateJoined,Email=@Email,Street=@Street,Phone=@Phone,City=@City,State=@State,ZipCode=@ZipCode,Code=@Code WHERE EmployeeId = @EmployeeId
 END
 
---EXEC UEmployee @EmployeeId = 1021, @FName = "Xyzxyz",@LName ="SSEssz",@Gender ="Male",@DateOfBirth="19990519",@DateJoined= "20210519",@Email ="xyz@gmail.com" ,@street = "colony",@Phone = "9988776655",@City = "mum",@State = "mah",@ZipCode = 123456,@Code = "TD01"
+--EXEC UEmployee @FName = "Xyzxyz",@LName ="SSEssz",@Gender ="Male",@DateOfBirth="19990519",@DateJoined= "20210519",@Email ="xyz@gmail.com" ,@street = "colony",@Phone = "9988776655",@City = "mum",@State = "mah",@ZipCode = 123456,@Code = "TD01"
 
 CREATE PROCEDURE DEmployee
 @EmployeeId INT
@@ -158,7 +165,8 @@ BEGIN
 	INSERT INTO JobProject (PId,PName,PDetail,SupervisorEmployeeId) VALUES (@PId,@PName,@PDetail,@SupervisorEmployeeId)
 END
 
---EXEC AProject @PId ="AQ01",@PName="XYZ",@PDetail="Nothing",@SupervisorEmployeeId= 1019
+select * from JobProject
+--EXEC AProject @PId ="AA01",@PName="XYZ",@PDetail="Nothing",@SupervisorEmployeeId= 1041
 
 CREATE PROCEDURE UProject
 	@PId VARCHAR(20),
@@ -181,7 +189,7 @@ BEGIN
   UPDATE Employee SET PId = NULL WHERE PId = @PId  
   DELETE FROM JobProject WHERE PId = @PId 
 END
-
+ 
 --EXEC DProject @PId = AQ01
 
 

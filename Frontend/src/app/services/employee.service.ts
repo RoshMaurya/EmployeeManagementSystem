@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee.model';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AEmployee } from '../models/aemployee.model';
 
 
 @Injectable({
@@ -114,20 +115,20 @@ export class EmployeeService {
 
   getEmployee(id: any): Observable<Employee> {
     // return this.listEmployees.find(e => e.employeeId == id)
-    console.log(id)
+    //console.log(id)
     return this.httpClient.get<Employee>('https://localhost:44345/api/Employees/GetEmployeeById/' + id);
   }
 
 
 
-  addEmployee(employee: Employee) {
+  addEmployee(employee: AEmployee) {
     // this.listEmployees.push(employee);
-    console.log(employee);
-    this.httpClient.post<Employee>("https://localhost:44345/api/Employees/AddEmployee", employee, this.httpOptions)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    //console.log(employee);
+    return this.httpClient.post<AEmployee>("https://localhost:44345/api/Employees/AddEmployee", employee, this.httpOptions)
+      // .subscribe(
+      //   (response) => console.log(response),
+      //   (error) => console.log(error)
+      // );
   }
 
 
@@ -135,12 +136,12 @@ export class EmployeeService {
 
   updateEmployee(employee: Employee) {
 
-    console.log(employee);
-    this.httpClient.put<Employee>("https://localhost:44345/api/Employees/UpdateEmployee", employee, this.httpOptions)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    //console.log(employee);
+    return this.httpClient.put<Employee>("https://localhost:44345/api/Employees/UpdateEmployee", employee, this.httpOptions)
+      // .subscribe(
+      //   (response) => console.log(response),
+      //   (error) => console.log(error)
+      // );
 
   }
 

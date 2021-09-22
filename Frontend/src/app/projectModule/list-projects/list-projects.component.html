@@ -21,7 +21,10 @@
                   <th scope="row">{{project.pId}}</th>
                   <td>{{project.pName}}</td>
                   <td>{{project.pDetail}}</td>
-                  <td>{{project.supervisorEmployeeId}}</td>
+                  <td>
+                    <button type="button" class="btn btn-link text-white" (click)="openEmpViewModal(viewEmpModal,project.supervisorEmployeeId)" data-toggle=modal
+                    data-target=#viewModal>{{project.supervisorEmployeeId}} </button>
+                  </td>
                   <td colspan="2">
                       <button class="btn btn-primary" (click)="openViewModal(viewModal,project,addemp)" data-toggle=modal
                           data-target=#viewModal>View</button>
@@ -33,15 +36,17 @@
                   </td>
               </tr>
           </tbody>
-          <div class ="my-2">
-              <span class= "font-weight-bold">
-              Employees Not Assign On Project :
-              <span *ngFor="let employee of addEmpNot">
-                  {{employee.employeeId}}
-              </span>
-            </span>
-          </div>
       </table>
+      <div class ="my-2 text-center">
+        <span class= "font-weight-bold">
+        Employees Not Assign On Project <br>
+        <span class="text-dark font-weight-bold" *ngFor="let empNot of addEmpNot">
+            <button  type="button" class="btn btn-link" (click)="openEmpViewModal(viewEmpModal,empNot.employeeId)"
+                data-toggle=modal data-target=#viewEmpModal>{{empNot.employeeId}}
+            </button>
+        </span>
+      </span>
+    </div>
   </div>
 </div>
 <!-- Profile Deletion modal code -->
@@ -66,7 +71,80 @@
   </div>
 </ng-template>
 
-<!-- View Modal -->
+<!-- View Employee Modal -->
+<ng-template #viewEmpModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{employee.fName + ' ' + employee.lName}}'s Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-4 text-center">
+                <img src="../../assets/images/maleProfileIcon.png" class="card-img-top"
+                    *ngIf="employee.gender.toLowerCase() == 'male'; else elseBlock">
+                <ng-template #elseBlock>
+                    <img src="../../assets/images/femaleProfileIcon.png" class="card-img-top">
+                </ng-template>
+                <h3>{{employee.fName + ' ' + employee.lName}}</h3>
+                <h6>{{employee.position}}</h6>
+            </div>
+            <div class="col-8">
+                <h4 class="info-container">Information</h4><br />
+                <div class="row">
+                    <div class="col">
+                        <span class="font-weight-bold">Id : </span> <span>{{employee.employeeId}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Contact No : </span> <span>{{employee.phone}}</span>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <span class="font-weight-bold">gender : </span> <span>{{employee.gender}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Email : </span> <span>{{employee.email}}</span>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold">Date Of Joining : </span>
+                        <span>{{employee.dateJoined}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">Date Of Birth : </span>
+                        <span>{{employee.dateOfBirth}}</span>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold my2">Address : </span><span> {{employee.street}},
+                            {{employee.city}}, {{employee.state}}.</span>
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold">ZIP Code : </span> <span>{{employee.zipCode}}</span>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col">
+                        <span class="font-weight-bold">Department: </span>
+                        <span>{{employee.dName}}</span>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
+    </div>
+</ng-template>  
+
+<!-- View Project Modal -->
 <ng-template #viewModal let-modal>
   <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">{{project.pName}} Project Details</h4>
@@ -115,5 +193,7 @@
   <div class="modal-footer">
       <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
   </div>
+
+
 
 

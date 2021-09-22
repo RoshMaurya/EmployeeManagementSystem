@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Employee } from 'src/app/models/employee.model';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { AddEmp } from '../../models/addemptoproj';
 import { Project } from '../../models/project.model';
 import { ProjectserviceService } from '../../services/projectservice.service';
@@ -15,12 +17,14 @@ export class ListProjectsComponent implements OnInit {
     projects: Project[] = [];
     nameOfProjectToDelete = '';
     project! : Project;
+    employee! : Employee;
     addempp!: AddEmp[];
     addemp!:AddEmp;
     addEmpNot!: AddEmp[];
 
     constructor(
       private _projectService: ProjectserviceService,
+      private _employeeService : EmployeeService,
       private modalService: NgbModal,
       private _router : Router
     ) { }
@@ -64,6 +68,22 @@ export class ListProjectsComponent implements OnInit {
       const modalRef = this.modalService.open(viewModal, {size : 'lg'}).result.then(() => {
         console.log(project);
         console.log(addemp.employeeId);
+      }, (reason) => {
+        console.log(reason);
+      });
+    }
+
+    //Employee View Modal
+    openEmpViewModal(viewEmpModal: any, employeeId : number) {
+      this._employeeService.getEmployee(employeeId).subscribe(
+        res =>{
+          this.employee=res;
+          //console.log(this.employee);
+        }
+      );
+      //this.employee = employee;
+      const modalRef = this.modalService.open(viewEmpModal, {size : 'lg'}).result.then(() => {
+        //console.log(this.employee);
       }, (reason) => {
         console.log(reason);
       });

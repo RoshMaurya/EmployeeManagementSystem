@@ -70,12 +70,12 @@ namespace DapperApi.Controllers
 
         //[ActionName("AddEmployee")]
         [HttpPost("AddEmployee/")]
-        public async Task<IActionResult> AddEmployee(Employee employee)
+        public async Task<IActionResult> AddEmployee(AEmployee employee)
         {
             try
             {
                 await _employeeRepo.AddEmployee(employee);
-                return Ok($"Sucessfully Added Employee Details with Id: {employee.EmployeeId}.");
+                return Ok($"Sucessfully Added Employee Details with Name: {employee.FName} {employee.LName}.");
                 
             }
             catch (Exception ex)

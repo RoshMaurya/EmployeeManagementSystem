@@ -52,7 +52,25 @@ export class EditEmployeeComponent implements OnInit {
 
   // Method to update and employee
   updateEmployee() {
-    this._employeeservice.updateEmployee(this.employee);
+    this._employeeservice.updateEmployee(this.employee)
+    .subscribe(
+      (response) => console.log(response),
+      (error) => {
+        switch ( error.status ){
+          case 200:if(error.error.text.indexOf('Sucessfully') !== -1){
+                      alert(error.error.text);
+                    }
+                    break;
+          case 400: if(error.error.indexOf('Violation of UNIQUE KEY') !== -1){
+                      alert("Entered Email Address is already present in the system");
+                    } 
+                    else{
+                      alert(error.error);
+                    } 
+                    break;       
+        }
+      }
+    );
     //console.error(this.employee.firstName);
     this._router.navigate(['/nav/employees']);
   }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
+import { AEmployee } from 'src/app/models/aemployee.model';
 
 
 @Component({
@@ -13,25 +14,8 @@ import { Employee } from '../../models/employee.model';
 export class AddEmployeeComponent implements OnInit {
 
   Title: string = "Enter Details";
-
-  // id: number = 0;
-  // firstname: string = " ";
-  // lastname: string = " ";
-  // gender: string = " ";
-  // DOB: Date = new Date("Dec 2 1998");
-  // DOJ = new Date("Dec 2 1998");
-  // email: string = " ";
-  // phone: number = 0;
-  // street: string =  "";
-  // city:  string =  "";
-  // state:  string =  "";
-  // zipCode:  number =  0;
-  // Job_title: string = " ";
-  // employee!: Employee;
-
- 
-  employee : Employee = {
-    employeeId: 0,
+  errormsg! : string ;
+  employee : AEmployee = {
     fName: "",
     lName: "",
     gender: "",
@@ -52,7 +36,28 @@ export class AddEmployeeComponent implements OnInit {
   }
   // Method to save an employee
   saveEmployee() {
-    this.employeeservice.addEmployee(this.employee);
+    this.employeeservice.addEmployee(this.employee)
+    .subscribe(
+      (response) => console.log(response),
+      (error) => {
+        console.log(error);
+        console.log(error.error.text)
+        console.log(error.status)
+        switch ( error.status ){
+          case 200:if(error.error.text.indexOf('Sucessfully') !== -1){
+                      alert(error.error.text);
+                    }
+                    break;
+          case 400: if(error.error.indexOf('Violation of UNIQUE KEY') !== -1){
+                      alert("Entered Email Address is already present in the system");
+                    } 
+                    else{
+                      alert(error.error);
+                    } 
+                    break;       
+        }
+      }
+    );;
 
     this.router.navigate(['/nav/employees']);
   }

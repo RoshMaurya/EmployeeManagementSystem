@@ -22,7 +22,26 @@ export class AddProjectComponent implements OnInit {
 
   saveProject() {
   
-    this.projectservice.addProject(this.project);
+    this.projectservice.addProject(this.project)
+    .subscribe(
+      (response) => console.log(response),
+      (error) =>
+      {
+        //console.log(error.error);
+        switch ( error.status ){
+          case 200:if(error.error.text.indexOf('Sucessfully') !== -1){
+                      alert(error.error.text);
+                    }
+                    break;
+          case 400: if(error.error.indexOf('duplicate') !== -1){
+                      alert("Project with Id" + this.project.pId + " is already present");
+                    }else{
+                      alert(error.error);
+                    } 
+                    break;       
+        }
+      }
+    );    
     this.router.navigate(['/nav/projects']);
   }
   ngOnInit(): void {

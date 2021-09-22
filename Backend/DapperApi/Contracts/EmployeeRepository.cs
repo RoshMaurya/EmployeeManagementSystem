@@ -52,10 +52,9 @@ namespace DapperApi.Contracts
             }
         }
 
-        public async Task<Employee> AddEmployee(Employee employee)
+        public async Task<AEmployee> AddEmployee(AEmployee employee)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("EmployeeId", employee.EmployeeId, DbType.Int32);
             parameters.Add("FName", employee.FName, DbType.String);
             parameters.Add("LName", employee.LName, DbType.String);
             parameters.Add("Gender", employee.Gender, DbType.String);
@@ -75,7 +74,7 @@ namespace DapperApi.Contracts
 
             using (var connection = _context.CreateConnection())
             {      
-                var Addedemployee = await connection.QuerySingleOrDefaultAsync<Employee>("AEmployee",
+                var Addedemployee = await connection.QuerySingleOrDefaultAsync<AEmployee>("AEmployee",
                     parameters,commandType: CommandType.StoredProcedure);
                 return Addedemployee;
             }

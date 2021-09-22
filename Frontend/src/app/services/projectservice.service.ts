@@ -33,22 +33,22 @@ export class ProjectserviceService {
   addProject(project: Project) {
     console.log(project);
 
-    this.httpClient.post<Project>("https://localhost:44345/api/Project/AddProject", project, this.httpOptions)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    return this.httpClient.post<Project>("https://localhost:44345/api/Project/AddProject", project, this.httpOptions);
+    // .subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error.error)
+    // );
   }
 
  
   updateProject(project: Project) {
 
-    console.log(project);
-    this.httpClient.put<Project>("https://localhost:44345/api/Project/UpdateProject", project, this.httpOptions)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    //console.log(project);
+    return this.httpClient.put<Project>("https://localhost:44345/api/Project/UpdateProject", project, this.httpOptions)
+      // .subscribe(
+      //   (response) => console.log(response),
+      //   (error) => console.log(error.error.text)
+      // );
   }
   deleteProject(id: string) {
     const deleteProj = 'https://localhost:44345/api/Project/DeleteProject/' + id;
@@ -81,4 +81,6 @@ export class ProjectserviceService {
     return this.httpClient.get<AddEmp[]>('https://localhost:44345/api/Project/GetEmpNotProject/');
   }
 }
+
+
 
