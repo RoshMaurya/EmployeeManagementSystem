@@ -27,14 +27,14 @@ const routes: Routes = [
     path: 'nav',
     component: NavbarComponent,canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent ,canActivate: [AuthGuard] },
-      { path: 'employees', component: ListEmployeesComponent,canActivate: [AuthGuard] },
-      { path: 'createEmployee', component: AddEmployeeComponent,canActivate: [AuthGuard] },
-      { path: 'editEmployee/:id', component: EditEmployeeComponent,canActivate: [AuthGuard] },
-      {path : 'createproject', component:AddProjectComponent,canActivate: [AuthGuard]},
-      {path : 'editproject/:id', component:EditProjectComponent,canActivate: [AuthGuard]},
-      {path: 'projects',component:ListProjectsComponent,canActivate: [AuthGuard]},
-      {path: 'addemp/:id',component:AddEmptoprojectComponent,canActivate: [AuthGuard]}
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'employees', component: ListEmployeesComponent },
+      { path: 'createEmployee', component: AddEmployeeComponent},
+      { path: 'editEmployee/:id', component: EditEmployeeComponent},
+      {path : 'createproject', component:AddProjectComponent},
+      {path : 'editproject/:id', component:EditProjectComponent},
+      {path: 'projects',component:ListProjectsComponent},
+      {path: 'addemp/:id',component:AddEmptoprojectComponent}
       
     ]
   }

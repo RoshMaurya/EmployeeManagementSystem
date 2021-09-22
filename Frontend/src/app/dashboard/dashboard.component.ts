@@ -22,11 +22,12 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
     //console.log(this._loginService.getLoginStatus());
     // this.ageGroups =
     this._dashboardService.getAgeGroups().subscribe(
-      (res) => this.ageGrp = res,  
+      (res) => {this.ageGrp = res
+      console.log(this.ageGrp)},  
       (error) => console.log(error)
     );
     this._dashboardService.getGender().subscribe(
@@ -97,15 +98,15 @@ export class DashboardComponent implements OnInit {
 
 
   onSelect(event: any) {
-    //console.log(event);
+    console.log(event);
   }
 
   onActivate(data: any): void {
-    //console.log('Activate', JSON.parse(JSON.stringify(data)));
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
   onDeactivate(data: any): void {
-    //console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
   formatString(input: string): string {

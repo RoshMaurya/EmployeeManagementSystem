@@ -173,21 +173,14 @@
                       <span class="font-weight-bold">Supervisor_ID : </span> <span>{{project.supervisorEmployeeId}}</span>
                   </div>
               <div class="col">
-                    <span class="font-weight-bold">EmployeeId : </span>
+                    <span class="font-weight-bold">EmployeeId : </span><br>
                     <span *ngFor="let emps of addempp">
-                      {{emps.employeeId}},
+                        <button  type="button" class="btn btn-link" (click)="openEmpViewModal(viewEmpModal,emps.employeeId)"
+                            data-toggle=modal data-target=#viewEmpModal>{{emps.employeeId}}
+                        </button>
                     </span>
               </div>
-              </div>
-              <!-- <div class="row my-3">
-                  <div class="col">
-                      <span class="font-weight-bold">Start_Date : </span>
-                      <span>{{project.StartDate}}</span>
-                  </div>
-                  <div class="col">
-                      <span class="font-weight-bold">End_Date : </span>
-                      <span>{{project.EndDate}}</span>
-                  </div> -->
+            </div>
       </div>
   </div>
   <div class="modal-footer">
