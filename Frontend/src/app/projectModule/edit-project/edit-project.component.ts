@@ -38,25 +38,24 @@ export class EditProjectComponent implements OnInit {
 
   updateProject() {
     this.projectservice.updateProject(this.project)
-    .subscribe(
+      .subscribe(
         (response) => console.log(response),
         (error) => {
           //console.log(error.error.text)
-          switch ( error.status ){
-            case 200:if(error.error.text.indexOf('Sucessfully') !== -1){
+          switch (error.status) {
+            case 200: if (error.error.text.indexOf('Sucessfully') !== -1) {
                         alert(error.error.text);
                       }
                       break;
-            case 400: if(error.error.indexOf('Violation of UNIQUE KEY') !== -1){
+            case 400: if (error.error.indexOf('Violation of UNIQUE KEY') !== -1) {
                         alert("Entered Email Address is already present in the system");
-                      } 
-                      else{
+                      }
+                      else {
                         alert(error.error);
-                      } 
-                      break;       
+                      }
+                      break;
           }
         }
-
       );
     //console.error(this.employee.firstName);
     this._router.navigate(['/nav/projects']);

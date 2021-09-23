@@ -5,7 +5,6 @@
       <td>ID :</td>
       <td><input readonly type="number" [(ngModel)]="employee.employeeId"></td>
     </tr>
-
     <tr>
       <td>First Name:</td>
       <td><input type="text" [(ngModel)]="employee.fName" size="30" InputText required /></td>
@@ -21,7 +20,6 @@
           <option value="Female">Female</option>
         </select></td>
     </tr>
-
     <tr>
       <td>DOB:</td>
       <td><input id="float-input" type="date" size="30" [(ngModel)]="employee.dateOfBirth" pInputText required></td>
@@ -55,7 +53,8 @@
       <td><input type="text" [(ngModel)]="employee.zipCode" size="30" pInputText required></td>
     </tr>
     <td>Job_Title:</td>
-    <td><select name="Job_Title:" [(ngModel)]="employee.code">
+    <td>
+      <select name="Job_Title:" [(ngModel)]="employee.code">
         <option value="AA02">Account Analyst</option>
         <option value="AD02">Associate SDE</option>
         <option value="HR01">HR</option>
@@ -66,8 +65,8 @@
         <option value="SD02">Tecnical Lead</option>
         <option value="SD03">Senior SDE</option>
         <option value="TD01">Trainee SDE</option>
-
-      </select></td>
+      </select>
+    </td>
     <br />
     <tr>
       <td class='text-right'>

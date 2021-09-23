@@ -1,6 +1,6 @@
-export class dashboardData{
+export class dashboardData {
     constructor(
-        public name : string,
-        public value : number
-    ){}
+        public name: string,
+        public value: number
+    ) { }
 }

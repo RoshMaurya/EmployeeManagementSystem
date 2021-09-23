@@ -1,29 +1,39 @@
 <div class="Edit-Container">
-<h2 align=center>{{Title}}</h2><br/>
-<div align="center">
-  <table align="center" cellspacing = "2" cellpadding = "2">
-  <tr>
-    <td>Project ID :</td>
-    <td><input type="text" [(ngModel)]="project.pId" class="form-control" placeholder="Project_Id" size="30" InputText required></td>
-    </tr>
-    <tr>
-      <td>Project Name :</td>
-      <td><input type="text" [(ngModel)]="project.pName" class="form-control" placeholder="Project_Name" InputText required></td>
-</tr>
-<tr>
-  <td>Project_Details:</td>
-  <td><input type="text" [(ngModel)]="project.pDetail" class="form-control" placeholder="ProjectDetail" InputText required></td>
-</tr>
-<tr>
-  <td>Supervisor_Emp_ID:</td>
-  <td><input type="text" [(ngModel)]="project.supervisorEmployeeId" class="form-control" placeholder="SupervisorEmpID" InputText required></td>
-</tr><br/>
-<div align="right">
-<tr>
- &nbsp;&nbsp;<td class='text-right'><button class="btn btn-success" (click)="saveProject()">Submit</button></td>
-</tr>
+  <h2 align=center>{{Title}}</h2><br />
+  <div align="center">
+    <table align="center" cellspacing="2" cellpadding="2">
+      <tr>
+        <td>Project ID :</td>
+        <td>
+          <input type="text" [(ngModel)]="project.pId" class="form-control" placeholder="Project_Id" size="30"
+            InputText required>
+        </td>
+      </tr>
+      <tr>
+        <td>Project Name :</td>
+        <td><input type="text" [(ngModel)]="project.pName" class="form-control" placeholder="Project_Name" InputText
+            required>
+        </td>
+      </tr>
+      <tr>
+        <td>Project_Details:</td>
+        <td><input type="text" [(ngModel)]="project.pDetail" class="form-control" placeholder="ProjectDetail" InputText
+            required>
+        </td>
+      </tr>
+      <tr>
+        <td>Supervisor_Emp_ID:</td>
+        <td><input type="text" [(ngModel)]="project.supervisorEmployeeId" class="form-control"
+            placeholder="SupervisorEmpID" InputText required>
+        </td>
+      </tr><br/>
+      <div align="right">
+        <tr>&nbsp;&nbsp;
+          <td class='text-right'>
+            <button class="btn btn-success" (click)="saveProject()">Submit</button>
+          </td>
+        </tr>
+      </div>
+    </table>
+  </div>
 </div>
-</table>
-</div>
-</div>
-

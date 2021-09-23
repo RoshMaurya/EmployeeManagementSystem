@@ -13,7 +13,7 @@ export class AEmployee {
         public state: string,
         public zipCode: string,
         public code: string,
-         //DName
+        //DName
     ) { }
 
 }

@@ -1,6 +1,4 @@
-
-
-<div  class="my-5">
+<div class="my-5">
   <table class="dashboardTable">
     <tbody>
       <tr>
@@ -19,13 +17,18 @@
         <td>
           <ngx-charts-pie-chart [results]="positionData" [view]="view" scheme="vivid" [gradient]="gradient"
             [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
-            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)" legendTitle="Positons" >
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"
+            legendTitle="Positons">
           </ngx-charts-pie-chart>
         </td>
       </tr>
       <tr>
-        <td><hr/></td>
-        <td><hr/></td>
+        <td>
+          <hr />
+        </td>
+        <td>
+          <hr />
+        </td>
       </tr>
       <tr>
         <td>
@@ -43,7 +46,8 @@
         <td>
           <ngx-charts-pie-chart [results]="genderData" [view]="view" scheme="picnic" [gradient]="gradient"
             [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="!isDoughnut"
-            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)" legendTitle="Gender" >
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"
+            legendTitle="Gender">
           </ngx-charts-pie-chart>
         </td>
       </tr>

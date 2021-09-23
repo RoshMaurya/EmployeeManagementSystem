@@ -9,7 +9,7 @@ import { Project } from '../models/project.model';
 })
 export class ProjectserviceService {
 
-  pId:string=" ";
+  pId: string = " ";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +28,7 @@ export class ProjectserviceService {
     return this.httpClient.get<Project>('https://localhost:44345/api/Project/GetProjectById/' + id);
   }
 
-  
+
 
   addProject(project: Project) {
     console.log(project);
@@ -40,32 +40,30 @@ export class ProjectserviceService {
     // );
   }
 
- 
+
   updateProject(project: Project) {
 
     //console.log(project);
     return this.httpClient.put<Project>("https://localhost:44345/api/Project/UpdateProject", project, this.httpOptions)
-      // .subscribe(
-      //   (response) => console.log(response),
-      //   (error) => console.log(error.error.text)
-      // );
+    // .subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error.error.text)
+    // );
   }
   deleteProject(id: string) {
     const deleteProj = 'https://localhost:44345/api/Project/DeleteProject/' + id;
     return this.httpClient.delete(deleteProj, { responseType: 'text' });
   }
 
-  addEmptoproj(emp:AddEmp)
-  {
+  addEmptoproj(emp: AddEmp) {
     this.httpClient.post<AddEmp>("https://localhost:44345/api/Project/AEmpProject", emp, this.httpOptions)
-    .subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 
-  GetEmpProject(id:string): Observable<AddEmp[]>
-  {
+  GetEmpProject(id: string): Observable<AddEmp[]> {
     return this.httpClient.get<AddEmp[]>('https://localhost:44345/api/Project/GetEmpProject/' + id);
   }
 

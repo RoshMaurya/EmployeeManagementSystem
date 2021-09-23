@@ -13,7 +13,7 @@ export class LoginService {
   private userSubject: BehaviorSubject<loginCredentials>;
   public user: Observable<loginCredentials>;
 
-  constructor(private router: Router,private httpclient: HttpClient) { 
+  constructor(private router: Router, private httpclient: HttpClient) {
     this.userSubject = new BehaviorSubject<loginCredentials>(JSON.parse(localStorage.getItem('user') || "{}"));
     this.user = this.userSubject.asObservable();
   }
@@ -22,13 +22,13 @@ export class LoginService {
     return this.userSubject.value;
   }
 
-  login(username : string, password : string){
-    return this.httpclient.post<loginCredentials>('https://localhost:44345/api/Login', {username: username, password: password}).pipe(map(user => {
+  login(username: string, password: string) {
+    return this.httpclient.post<loginCredentials>('https://localhost:44345/api/Login', { username: username, password: password }).pipe(map(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
       return user;
-  }));   
+    }));
   }
 
   logout() {

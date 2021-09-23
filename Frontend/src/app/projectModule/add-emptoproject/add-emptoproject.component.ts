@@ -13,21 +13,21 @@ import { ProjectserviceService } from '../../services/projectservice.service';
 })
 export class AddEmptoprojectComponent implements OnInit {
 
-  Title:string="Enter Details";
+  Title: string = "Enter Details";
 
   //id:string=" ";
-  PID:string=" ";
-  EmployeeId:number=0;
+  PID: string = " ";
+  EmployeeId: number = 0;
 
   addemp!: AddEmp;
   project!: Project;
 
-  constructor(private projectservice:ProjectserviceService, private router: Router, private _route: ActivatedRoute) {
+  constructor(private projectservice: ProjectserviceService, private router: Router, private _route: ActivatedRoute) {
 
   }
 
   saveEmp() {
-    this.addemp = new AddEmp(this.project.pId,this.EmployeeId);
+    this.addemp = new AddEmp(this.project.pId, this.EmployeeId);
     console.log(this.addemp);
     this.projectservice.addEmptoproj(this.addemp);
     (this.addemp);
@@ -36,13 +36,13 @@ export class AddEmptoprojectComponent implements OnInit {
   ngOnInit(): void {
 
     this._route.paramMap.subscribe(parametermMap => {
-    const PID = parametermMap.get('id');
-    console.log(this.PID);
-    this.projectservice.getProject(PID).subscribe(
-      (response: any) => this.project = response,
-      (error: any) => console.log(error),
+      const PID = parametermMap.get('id');
+      console.log(this.PID);
+      this.projectservice.getProject(PID).subscribe(
+        (response: any) => this.project = response,
+        (error: any) => console.log(error),
       );
     });
 
-}
+  }
 }

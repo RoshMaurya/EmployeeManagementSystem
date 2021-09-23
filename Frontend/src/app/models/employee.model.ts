@@ -13,10 +13,10 @@ export class Employee {
         public city: string,
         public state: string,
         public zipCode: string,
-        public position?: string, 
+        public position?: string,
         public dName?: string,
         public code?: string,
-         //DName
+        //DName
     ) { }
 
 }

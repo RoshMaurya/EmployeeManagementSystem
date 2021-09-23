@@ -119,29 +119,24 @@ export class EmployeeService {
     return this.httpClient.get<Employee>('https://localhost:44345/api/Employees/GetEmployeeById/' + id);
   }
 
-
-
   addEmployee(employee: AEmployee) {
     // this.listEmployees.push(employee);
     //console.log(employee);
     return this.httpClient.post<AEmployee>("https://localhost:44345/api/Employees/AddEmployee", employee, this.httpOptions)
-      // .subscribe(
-      //   (response) => console.log(response),
-      //   (error) => console.log(error)
-      // );
+    // .subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error)
+    // );
   }
-
-
-
 
   updateEmployee(employee: Employee) {
 
     //console.log(employee);
     return this.httpClient.put<Employee>("https://localhost:44345/api/Employees/UpdateEmployee", employee, this.httpOptions)
-      // .subscribe(
-      //   (response) => console.log(response),
-      //   (error) => console.log(error)
-      // );
+    // .subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error)
+    // );
 
   }
 

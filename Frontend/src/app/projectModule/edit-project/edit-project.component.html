@@ -1,28 +1,37 @@
 <div class="Edit-Container">
   <div align="center">
-  <h2 align=center>{{Title}}</h2><br/>
-    <table align="center" cellspacing = "2" cellpadding = "2">
-    <tr>
-          <td><label>Project_Id:</label></td>
-          <td><input readonly type="text" [(ngModel)]="this.project.pId" class="form-control" placeholder="ProjectId" required></td>
+    <h2 align=center>{{Title}}</h2><br/>
+    <table align="center" cellspacing="2" cellpadding="2">
+      <tr>
+        <td><label>Project_Id:</label></td>
+        <td><input readonly type="text" [(ngModel)]="this.project.pId" class="form-control" placeholder="ProjectId"
+            required>
+        </td>
       </tr>
       <tr>
-          <td><label>Project_Name:</label></td>
-          <td><input type="text" name="PName" [(ngModel)]="this.project.pName" class="form-control" placeholder="Project_Name" required></td>
-  </tr>
-  <tr>
-    <td><label>Pproject_Details:</label></td>
-    <td><input type="text" [(ngModel)]="this.project.pDetail" class="form-control" placeholder="ProjectDetail" required></td>
-  </tr>
-  <tr>
-    <td><label>Supervisor_Emp_ID:</label></td>
-    <td><input type="text" [(ngModel)]="this.project.supervisorEmployeeId" class="form-control" placeholder="SupervisorEmpID" required></td>
-  </tr><br/>
-  <div align="right">
-  <tr>
-  <td class='text-right'><button class="btn btn-success" (click)="updateProject()">Edit</button></td>
-  </tr>
-  </div>
-  </table>
+        <td><label>Project_Name:</label></td>
+        <td><input type="text" name="PName" [(ngModel)]="this.project.pName" class="form-control"
+            placeholder="Project_Name" required>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Pproject_Details:</label></td>
+        <td><input type="text" [(ngModel)]="this.project.pDetail" class="form-control" placeholder="ProjectDetail"
+            required>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Supervisor_Emp_ID:</label></td>
+        <td><input type="text" [(ngModel)]="this.project.supervisorEmployeeId" class="form-control"
+            placeholder="SupervisorEmpID" required>
+        </td>
+      </tr><br />
+      <div align="right">
+        <tr>
+          <td class='text-right'><button class="btn btn-success" (click)="updateProject()">Edit</button>
+          </td>
+        </tr>
+      </div>
+    </table>
   </div>
 </div>
